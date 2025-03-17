@@ -2,6 +2,15 @@
 
 BudgetMaster is a personal budget management application that allows users to track expenses and incomes, categorize them, and view analytical reports. It is built with Angular 17 for the frontend and Spring Boot 3 for the backend, with PostgreSQL as the database.
 
+## 🌟 Screenshots  
+
+### 🔹 **Dashboard**  
+![Home Page](https://github.com/user-attachments/assets/73bdeea0-eb1e-4eaf-ba1d-1d200cc46c14)  
+
+### 🔹 **Transaction Management**  
+![Task Management](https://github.com/user-attachments/assets/021948fc-0f02-492c-8840-4fe7f8f78170)  
+
+
 ## Project Structure
 ```
 BudgetMaster/
