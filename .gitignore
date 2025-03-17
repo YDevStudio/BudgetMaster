@@ -1,0 +1,18 @@
+# Node.js (Angular frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.angular
+# Java/Spring Boot
+backend/target/
+backend/*.jar
+backend/*.war
+backend/*.log
+backend/.env
+
+# macOS
+.DS_Store
+
+# IntelliJ IDEA / VS Code settings
+.idea/
+.vscode/

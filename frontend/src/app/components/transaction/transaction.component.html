@@ -1,0 +1,63 @@
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg animate-fade-in-up">
+  <h2 class="text-3xl font-semibold mb-6 text-slate-800">Manage Transactions</h2>
+
+  <!-- Form for Adding or Editing Transactions -->
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="mb-6 flex flex-col md:flex-row gap-4">
+    <select formControlName="type" class="p-3 rounded-lg border bg-gray-100">
+      <option value="INCOME">Income</option>
+      <option value="EXPENSE">Expense</option>
+    </select>
+    <input formControlName="amount" type="number" placeholder="Amount"
+      class="flex-1 p-3 rounded-lg border border-gray-300 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+
+    <input formControlName="date" type="date"
+      class="flex-1 p-3 rounded-lg border border-gray-300 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+
+    <!-- Category Selection -->
+    <select formControlName="category"
+      class="flex-1 p-3 rounded-lg border border-gray-300 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+      <option value="" disabled selected>Select a category</option>
+      <option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+
+    <!-- Add Transaction Button -->
+    <button type="submit"
+      class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all">
+      {{ isEditMode ? 'Update Transaction' : 'Add Transaction' }}
+    </button>
+  </form>
+
+  <!-- Transactions List -->
+  <ul class="space-y-3">
+    <li *ngFor="let transaction of transactions"
+      class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow flex items-center justify-between">
+      <div class="flex gap-4 items-center">
+        <span class="text-lg font-medium" [class.text-emerald-600]="transaction.amount > 0"
+          [class.text-red-500]="transaction.amount < 0">
+          {{ transaction.amount | currency }}
+        </span>
+        <span class="text-gray-500">{{ transaction.date | date }}</span>
+        <span class="px-3 py-1.5 bg-blue-100 text-blue-700 text-sm rounded-lg">
+          {{ transaction.category.name }}
+        </span>
+        <span class="px-3 py-1.5 text-sm rounded-lg" [class.bg-green-200]="transaction.type === 'INCOME'"
+          [class.bg-red-200]="transaction.type === 'EXPENSE'">
+          {{ transaction.type }}
+        </span>
+      </div>
+
+      <div class="flex gap-2">
+        <button (click)="editTransaction(transaction)"
+          class="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md transition-all">
+          Edit
+        </button>
+        <button (click)="deleteTransaction(transaction.id)"
+          class="px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-md transition-all">
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

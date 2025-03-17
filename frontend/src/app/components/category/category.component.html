@@ -1,0 +1,43 @@
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg animate-fade-in-up">
+  <h2 class="text-3xl font-semibold mb-6 text-slate-800">Manage Categories</h2>
+
+  <!-- Form for Adding or Editing Categories -->
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="mb-6 flex flex-col md:flex-row gap-4">
+    <input 
+      formControlName="name" 
+      type="text" 
+      placeholder="Category Name" 
+      class="flex-1 p-3 rounded-lg border border-gray-300 bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+    >
+    <button 
+      type="submit" 
+      class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all"
+    >
+      {{ isEditMode ? 'Update Category' : 'Add Category' }}
+    </button>
+  </form>
+
+  <!-- Categories List -->
+  <ul class="space-y-3">
+    <li 
+      *ngFor="let category of categories"
+      class="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow flex items-center justify-between"
+    >
+      <span class="text-gray-800 font-medium">{{ category.name }}</span>
+      <div class="flex gap-2">
+        <button 
+          (click)="editCategory(category)"
+          class="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md transition-all"
+        >
+          Edit
+        </button>
+        <button 
+          (click)="deleteCategory(category.id)"
+          class="px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-md transition-all"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
